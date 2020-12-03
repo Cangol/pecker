@@ -43,6 +43,7 @@ dependencies {
 docker {
     springBootApplication  {
         baseImage = 'openjdk:8-jdk-alpine'
+        maintainer = 'cangol'
         ports = [443, 443]
         images =["${app_name}:latest"]
         jvmArgs = ['-Xmx2048m']
