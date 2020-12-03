@@ -30,6 +30,12 @@ public class ServerController {
         return "server_add";
     }
 
+    @GetMapping(value = "/server/delete")
+    public String delete(long id,Model model, HttpServletRequest request) {
+        appServerService.delete(id);
+        return "redirect:/server";
+    }
+
     @GetMapping(value = "/server/add")
     public String add(Model model, HttpServletRequest request) {
         model.addAttribute("server", new AppServer());
@@ -39,7 +45,7 @@ public class ServerController {
     @PostMapping(value = "/server/save")
     public String save(AppServer appServer, HttpServletRequest request) {
         appServerService.save(appServer);
-        return "redirect:/server";
+        return "server";
     }
 
 }

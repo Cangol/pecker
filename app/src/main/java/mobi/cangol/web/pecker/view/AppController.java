@@ -44,7 +44,7 @@ public class AppController {
     @PostMapping(value = "/app/save")
     public String save(App app,Model model, HttpServletRequest request) {
         appService.save(app);
-        return "app";
+        return "redirect:/app";
     }
 
     @GetMapping(value = "/app/add")
@@ -59,6 +59,12 @@ public class AppController {
         model.addAttribute("app", appService.get(id));
         model.addAttribute("servers", appServerService.getAllList());
         return "app_add";
+    }
+
+    @GetMapping(value = "/app/delete")
+    public String delete(long id,Model model, HttpServletRequest request) {
+        appService.delete(id);
+        return "redirect:/app";
     }
 }
 

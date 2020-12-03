@@ -48,6 +48,7 @@
                 <td th:text="${item.token}"></td>
                 <td>
                     <a class="layui-btn layui-btn-sm" th:href="@{/server/edit(id=${item.id})}" th:text="#{server.edit}"></a>
+                    <a class="layui-btn layui-btn-sm" th:href="@{/server/delete(id=${item.id})}" th:text="#{server.delete}"></a>
                 </td>
             </tr>
             </tbody>

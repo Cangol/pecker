@@ -46,6 +46,7 @@
                 <td th:text="${item.release}"></td>
                 <td>
                     <a class="layui-btn layui-btn-sm" th:href="@{/app/edit(id=${item.id})}" th:text="#{app.edit}"></a>
+                    <a class="layui-btn layui-btn-sm" th:href="@{/app/delete(id=${item.id})}" th:text="#{app.delete}"></a>
                 </td>
             </tr>
             </tbody>
