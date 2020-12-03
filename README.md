@@ -44,4 +44,8 @@
      
 ## 帮助
      证书格式转换 https://myssl.com/cert_convert.html    
-   
+     
+### 客户端插件
+  android客户端插件    
+  [seafile-gradle-plugin](https://github.com/Cangol/seafile-gradle-plugin)     
+  [smbfile-gradle-plugin](https://github.com/Cangol/smbfile-gradle-plugin)     
