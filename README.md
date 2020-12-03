@@ -2,19 +2,19 @@
    本项目是为应用内部分发而设计的，支持android和ios平台(需支持SSL证书)的项目分发下载，需配合共享主机（存放安装包的FTP，SMB等共享）使用
 
 ## 安装
-### 本地安装
+### 配置
     下载项目后，在根目录执行gradle build
     替换自己的证书/app/src/main/resources/release/test.jks,并修改application.properties中相关配置
-   
+### 本地安装
     java -jar app-0.0.1-SNAPSHOT.jar
 ### docker安装     
-    docker pull cangol/pecker
+    docker dockerBuilder
     docker run --restart=always --name pecker -p 443:443 -p 80:80 -d pecker:latest --env admin_pwd=admin
 ## 初始化
     访问 http://localhost/ 可以看到测试一个应用
   
 ### 添加共享主机
-   访问 https://localhost/server  
+   访问 https://localhost/server  pecker
    点击底部`新建`（需要登录默认账号/密码 `admin/admin` ）
    共享主机目前支持三种类型 FTP、SMB、SEAFILE,分别需要录入主机的以下信息 
    
