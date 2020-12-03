@@ -14,23 +14,6 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
     options.compilerArgs << "-Xlint:unchecked"
 }
-task bootRunDev() {
-    group = "application"
-    doFirst {
-        bootRun { systemProperty "spring.profiles.active", "dev" }
-    }
-}
-
-bootRunDev.finalizedBy bootRun
-task bootRunProd() {
-    group = "application"
-    doFirst {
-        bootRun { systemProperty "spring.profiles.active", "prod" }
-    }
-}
-
-bootRunProd.finalizedBy bootRun
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'

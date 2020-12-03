@@ -6,8 +6,9 @@
     下载项目后，在根目录执行gradle build
     替换自己的证书/app/src/main/resources/release/test.jks,并修改application.properties中相关配置
 ### 本地安装
-    java -jar app-0.0.1-SNAPSHOT.jar
+    gradle bootRun
 ### docker安装     
+    先安装配置好docker的相关环境
     docker dockerBuildImage
     docker run --restart=always --name pecker -p 443:443 -p 80:80 -d pecker:latest --env admin_pwd=admin
 ## 初始化
