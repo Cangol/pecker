@@ -1,7 +1,6 @@
 # 说明
    本项目是为应用内部分发而设计的，支持android和ios平台(需支持SSL证书)的项目分发下载，需配合共享主机（存放安装包的FTP，SMB等共享）使用    
-    ![app](https://user-images.githubusercontent.com/1079693/100984312-8c8e7180-3585-11eb-8ed3-8cb1fd0684d6.jpg)    
-    ![ipa](https://user-images.githubusercontent.com/1079693/100984326-91532580-3585-11eb-82ea-6bc8c2ff954a.jpg)
+   ![app](https://user-images.githubusercontent.com/1079693/100984312-8c8e7180-3585-11eb-8ed3-8cb1fd0684d6.jpg)![ipa](https://user-images.githubusercontent.com/1079693/100984326-91532580-3585-11eb-82ea-6bc8c2ff954a.jpg)
    
 ## 安装
 ### 配置
