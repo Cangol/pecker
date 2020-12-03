@@ -4,6 +4,8 @@
 ## 安装
 ### 本地安装
     下载项目后，在根目录执行gradle build
+    替换自己的证书/app/src/main/resources/release/test.jks,并修改application.properties中相关配置
+   
     java -jar app-0.0.1-SNAPSHOT.jar
 ### docker安装     
     docker pull cangol/pecker

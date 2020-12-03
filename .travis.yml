@@ -1,0 +1,34 @@
+sudo: required
+dist: trusty
+language: java
+jdk: oraclejdk8
+
+services:
+  - docker
+addons:
+  sonarcloud:
+    organization: "cangol-github"
+    token:
+      secure: "fQIO+91OCo7DLyrMbYXU1Xnrv1nVusCjNudGd/nt+Lhg3DICcgFJ8GAy70vyDBh9MjL9K3at1SqzvtFsl/yjRVI8ceU/0FuQ/3Z36e/L8a8Nt13xZOjc95O9yt4tiGTATmkwf7mPjVwaBgjv0CZ8N2xcslbAFBJTQfhFxf2+1Oxrp6W4DstXwkbMWi8qPbFMaiYMoYtlRRkXnhyY9DMEWkGTjDb3ZZlCW8semNtXW0RGecDi6+XsrkW8g/tUW4XlW8mFrR9LbChmDA/3z3FT8E2uFLGmsALyEpSyc2M04WK77TWmDDMlKVufStGIH+POpH+APMCu+tWML/g98gwVKPXGzzjz+SsVDWJQ7E097Crj9YD/PX+vqmshQNUIiL4n16s2W/0/2mKiGaYB/yqd/Yhip8hC3LlyBBWRLKbZGiYehOLzNBadYiuEf5pHMh2UDha0DXCjMSLH5RiUVTJ2d48tSKGI2O6LP2atTvq9jFApDjT11wTk6WH+WkSnWAx4J6S8EeViIQKWd6Z0LLqYbXCqgm/iJM016FBVHpuXTgoeSHEaR9llNSQ3CsEA60jxSa3mawD4op1shPbPg2N3FvhEi4p4oftOdcD/ob9AtdHKd2N1qxXnEuyoWDHuxFHsqFCAg8c7fY5uoSeExw4VXykIp83AcCD3u3eRRH3aPHs="
+branches:
+  only:
+    - master
+    - audio
+    - /^deploy-.*$/
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+before_install:
+  - openssl aes-256-cbc -K $encrypted_6881a31765f3_key -iv $encrypted_6881a31765f3_iv -in keyfile.json.enc -out keyfile.json -d
+  - chmod +x gradlew
+script:
+  - ./gradlew dockerBuilder
+  - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+  - docker tag mobi.cangol/pecker:0.0.1-SNAPSHOT $DOCKER_USERNAME/pecker
+  - docker push $DOCKER_USERNAME/pecker
+after_success:
+  - ./gradlew sonarqube
