@@ -49,3 +49,4 @@
   android客户端打包上传插件    
   [seafile-gradle-plugin](https://github.com/Cangol/seafile-gradle-plugin)     
   [smbfile-gradle-plugin](https://github.com/Cangol/smbfile-gradle-plugin)     
+  [ftp-gradle-plugin](https://github.com/Cangol/ftp-gradle-plugin)   
