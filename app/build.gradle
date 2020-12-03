@@ -57,3 +57,11 @@ dependencies {
     implementation 'org.springframework.integration:spring-integration-smb:1.1.0.RELEASE'
     implementation 'org.springframework.integration:spring-integration-ftp:5.4.1'
 }
+docker {
+    springBootApplication  {
+        baseImage = 'java:8-jre'
+        ports = [443, 443]
+        images =["${app_name}:latest"]
+        jvmArgs = ['-Xmx2048m']
+    }
+}
