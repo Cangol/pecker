@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="#{server}"></title>
+</head>
+<body style="margin-top: 10px">
+<div layout:fragment="content">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend th:text="#{server}"></legend>
+    </fieldset>
+    <div>
+        <table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th th:text="#{server.host}"/>
+                <th th:text="#{server.type}" />
+                <th th:text="#{server.port}"/>
+                <th th:text="#{server.domain}"/>
+                <th th:text="#{server.username}"/>
+                <th th:text="#{server.password}" />
+                <th th:text="#{server.repo}"/>
+                <th th:text="#{server.token}"/>
+                <th th:text="#{server.edit}"/>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item:${servers}">
+                <td th:text="${item.host}"></td>
+                <td th:text="${item.type}"></td>
+                <td th:text="${item.port}"></td>
+                <td th:text="${item.domain}"></td>
+                <td th:text="${item.username}"></td>
+                <td th:text="${item.password}"></td>
+                <td th:text="${item.repo}"></td>
+                <td th:text="${item.token}"></td>
+                <td>
+                    <a class="layui-btn layui-btn-sm" th:href="@{/server/edit(id=${item.id})}" th:text="#{server.edit}"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="layui-btn layui-btn-sm" href="/server/add" th:text="#{server.add}"></a>
+    </div>
+</div>
+</body>
+</html>

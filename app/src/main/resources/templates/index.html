@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>App</title>
+</head>
+<body style="margin-top: 10px">
+<div layout:fragment="content">
+    <fieldset class="layui-elem-field site-demo-button" th:each="item:${apps}" style="padding: 10px;">
+        <legend th:text="${item.name}"></legend>
+        <div>
+            <a class="layui-btn layui-btn-radius layui-btn-normal" th:text="#{package.select_category_alpha}" th:href="@{/apk/list(appId=${item.id},category='alpha')}"/>
+            <a class="layui-btn layui-btn-radius layui-btn-warm"  th:text="#{package.select_category_trial}" th:href="@{/apk/list(appId=${item.id},category='trial')}"/>
+            <a class="layui-btn layui-btn-radius layui-btn-danger"  th:text="#{package.select_category_release}" th:href="@{/apk/list(appId=${item.id},category='release')}"/>
+        </div>
+    </fieldset>
+</div>
+</body>
+</html>

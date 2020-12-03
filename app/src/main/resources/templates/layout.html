@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang = "zh"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Pecker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/webjars/layui/css/layui.css" media="all">
+</head>
+<body>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+ <div layout:fragment="content" class="layui-container" />
+ <script src="/webjars/layui/layui.all.js" charset="utf-8"></script>
+<script>
+    layui.form.on('select(category)', function(data){
+        console.log(data.value); //得到被选中的值
+        layui.$('#apkForm').submit();
+    });
+    layui.form.on('select(version)', function(data){
+        console.log(data.value); //得到被选中的值
+        layui.$('#apkForm').submit();
+    });
+    layui.form.on('select(date)', function(data){
+        console.log(data.value); //得到被选中的值
+        layui.$('#apkForm').submit();
+    });
+    layui.form.on('select(flag)', function(data){
+        console.log(data.value); //得到被选中的值
+        layui.$('#apkForm').submit();
+    });
+    layui.form.on('radio(type)', function(data){
+        console.log(data.value); //得到被选中的值
+        if(data.value==='sea'){
+            layui.$('#repoDiv').show();
+            layui.$('#tokenDiv').show();
+        }else{
+            layui.$('#repoDiv').hide();
+            layui.$('#tokenDiv').hide();
+        }
+    });
+    layui.layer.photos({
+            photos: '#previewPhoto'
+            ,anim: 5
+        });
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${app.name}+${app.agent}"></title>
+</head>
+<body style="margin-top: 10px">
+<div layout:fragment="content">
+    <span th:if="${isWechat}" style="font-size: 12px; color: #ff0000;">"下载功能"不支持微信访问，请使用手机浏览器访问</span>
+    <form class="layui-form layui-form-pane" action="/apk/list" id="apkForm">
+        <div class="layui-row">
+            <input type="hidden" name="appId" th:value="${appId}"/>
+            <div class="layui-col-xs3">
+                <select name="category" lay-filter="category">
+                    <option value="" th:text="#{package.select_category}"/>
+                    <optgroup>
+                        <option value="alpha" th:selected="${'alpha'==category}" th:text="#{package.select_category_alpha}"><option>
+                        <option value="trial" th:selected="${'trial'==category}" th:text="#{package.select_category_trial}"><option>
+                        <option value="release" th:selected="${'release'==category}" th:text="#{package.select_category_release}"><option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="layui-col-xs3">
+                <select name="version" lay-filter="version">
+                    <option value="" th:text="#{package.select_version}"/>
+                    <optgroup>
+                        <option th:each="item:${versions}" th:value="${item}" th:text="${item}"
+                                th:selected="${item==version}"/>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="layui-col-xs3">
+                <select name="date" lay-filter="date">
+                    <option value="" th:text="#{package.select_date}"/>
+                    <optgroup>
+                        <option th:each="item:${dates}" th:value="${item}" th:text="${item}"
+                                th:selected="${item==date}"/>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="layui-col-xs3">
+                <select name="flag" lay-filter="flag">
+                    <option value="" th:text="#{package.select_flag}"/>
+                    <optgroup>
+                        <option th:each="item:${flags}" th:value="${item}" th:text="${item}"
+                                th:selected="${item==flag}"/>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+    </form>
+    <div id="previewPhoto">
+    <table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+        <colgroup>
+            <col width="110">
+            <col>
+            <col width="14">
+            <col width="60">
+        </colgroup>
+        <thead>
+        <tr>
+            <th th:text="#{package.version}"/>
+            <th th:text="#{package.date}" />
+            <th th:text="#{package.qrcode}"/>
+            <th th:text="#{package.download}"/>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item:${releases}">
+            <td >
+                <i th:if="${agent} eq 'android'" class="layui-icon" style="font-size: 12px; color: #00C853;">&#xe684;</i>
+                <i th:if="${agent} eq 'iOS'"class="layui-icon" style="font-size: 12px; color: #455A64;">&#xe680;</i>
+                <span th:text="${item.version}"/>
+            </td>
+
+            <td th:text="${item.date}"></td>
+            <td>
+                <img th:src="@{'/apk/image?src='+${item.image}}" th:width="14px" th:height="14px"/>
+            </td>
+            <td>
+                <a class="layui-btn layui-btn-sm" th:href="${item.url}" th:text="#{package.download}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</body>
+</html>

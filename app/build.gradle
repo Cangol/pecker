@@ -1,0 +1,59 @@
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.docker-spring-boot-application'
+
+group = "${app_group}"
+version = "${app_version}"
+sourceCompatibility = "${app_sourceCompatibility}"
+targetCompatibility = "${app_targetCompatibility}"
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-Xlint:unchecked"
+}
+task bootRunDev() {
+    group = "application"
+    doFirst {
+        bootRun { systemProperty "spring.profiles.active", "dev" }
+    }
+}
+
+bootRunDev.finalizedBy bootRun
+task bootRunProd() {
+    group = "application"
+    doFirst {
+        bootRun { systemProperty "spring.profiles.active", "prod" }
+    }
+}
+
+bootRunProd.finalizedBy bootRun
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    compileOnly 'org.projectlombok:lombok:1.18.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.2.2'
+
+    implementation('com.squareup.retrofit2:retrofit:2.6.0')
+    implementation('com.squareup.retrofit2:converter-gson:2.6.0')
+
+    implementation 'com.google.zxing:javase:3.2.1'
+    
+    implementation 'org.webjars:webjars-locator-core:+'
+    implementation 'org.webjars:layui:2.5.6'
+
+    implementation 'org.springframework.integration:spring-integration-smb:1.1.0.RELEASE'
+    implementation 'org.springframework.integration:spring-integration-ftp:5.4.1'
+}

@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.4.RELEASE'
+        app_name = 'pecker'
+        app_group = 'mobi.cangol.web'
+        app_version = '0.0.1-SNAPSHOT'
+        app_sourceCompatibility = '1.8'
+        app_targetCompatibility = '1.8'
+        app_springBootAdminVersion = '2.1.5'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        gradlePluginPortal()
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('com.bmuschko:gradle-docker-plugin:6.4.0')
+    }
+}
+plugins {
+    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+    id 'net.saliman.properties' version '1.5.1'
+}
+
+allprojects {
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        gradlePluginPortal()
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
