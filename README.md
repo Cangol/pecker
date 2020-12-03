@@ -15,7 +15,7 @@
     访问 http://localhost/ 可以看到测试一个应用
   
 ### 添加共享主机
-   访问 https://localhost/server  pecker
+   访问 https://localhost/server   
    点击底部`新建`（需要登录默认账号/密码 `admin/admin` ）
    共享主机目前支持三种类型 FTP、SMB、SEAFILE,分别需要录入主机的以下信息 
    
