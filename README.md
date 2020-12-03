@@ -8,7 +8,7 @@
 ### 本地安装
     java -jar app-0.0.1-SNAPSHOT.jar
 ### docker安装     
-    docker dockerBuilder
+    docker dockerBuildImage
     docker run --restart=always --name pecker -p 443:443 -p 80:80 -d pecker:latest --env admin_pwd=admin
 ## 初始化
     访问 http://localhost/ 可以看到测试一个应用
