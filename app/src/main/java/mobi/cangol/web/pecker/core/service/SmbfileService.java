@@ -35,7 +35,7 @@ public class SmbfileService extends RemoteService{
         }
         return smbSession;
     }
-
+    @Override
     public List<Apk> listFile(AppServer appServer, String dir, Long appId, String category, List<Apk> apks) throws IOException {
         log.debug("listFile dir={},appId={},category={}",dir,appId,category);
         SmbSession smbSession = getSmbSession(appServer);
@@ -96,7 +96,7 @@ public class SmbfileService extends RemoteService{
         }
         return apk;
     }
-
+    @Override
     public InputStream getFileInputStream(AppServer appServer, String filePath) throws IOException {
         log.debug("getFileInputStream="+filePath);
         SmbFile file= getSmbSession(appServer).createSmbFileObject(filePath);

@@ -26,7 +26,7 @@ public class SeafileService extends RemoteService{
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private AppServerService appServerService;
-
+    @Override
     public List<Apk> listFile(AppServer appServer, String dir, Long appId, String category, List<Apk> apks) throws IOException {
         log.debug("listFile "+dir);
         if(StringUtils.isEmpty(appServer.getToken())){
@@ -75,7 +75,7 @@ public class SeafileService extends RemoteService{
         }
         return apk;
     }
-
+    @Override
     public InputStream getFileInputStream(AppServer appServer, String filePath) throws IOException {
         log.debug("getFileInputStream="+filePath);
         String url = HttpUtils.execute(HttpUtils.getApiService(appServer.getHost(), ApiService.class).getFileDownloadUrl(appServer.getToken(), appServer.getRepo(),filePath));

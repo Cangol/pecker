@@ -29,7 +29,7 @@ public class FtpfileService extends RemoteService{
         }
         return ftpClient;
     }
-
+    @Override
     public List<Apk> listFile(AppServer appServer, String dir, Long appId, String category, List<Apk> apks) throws IOException {
         log.debug("listFile="+dir);
         FTPClient ftpClient=getFTPClient(appServer);
@@ -46,7 +46,7 @@ public class FtpfileService extends RemoteService{
         }
         return apks;
     }
-
+    @Override
     public InputStream getFileInputStream(AppServer appServer, String filePath) throws IOException {
         log.debug("getFileInputStream "+filePath);
         return getFTPClient(appServer).retrieveFileStream(new String(filePath.getBytes(), ftpClient.getControlEncoding()));
